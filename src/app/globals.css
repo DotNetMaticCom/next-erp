@@ -1,26 +1,98 @@
-@import "tailwindcss";
+/* src/app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-family-base: "Inter", var(--font-geist-sans, ui-sans-serif), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-geist-sans: "";
+    --font-geist-mono: "";
+    --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem; --text-xl: 1.25rem;
+    --text-2xl: 1.5rem; --text-3xl: 1.875rem; --text-4xl: 2.25rem; --text-5xl: 3rem;
+    --leading-tight: 1.2; --leading-snug: 1.375; --leading-normal: 1.5; --leading-relaxed: 1.625; --leading-loose: 2;
+    --radius-xs: 0.125rem; --radius-sm: 0.25rem; --radius-md: 0.375rem; --radius-lg: 0.5rem; --radius-xl: 0.75rem;
+    --radius: var(--radius-lg);
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    --shadow-card: var(--shadow-md); --shadow-card-hover: var(--shadow-lg); --shadow-sidebar: var(--shadow-md); --shadow-dropdown: var(--shadow-lg);
+
+    --tema-primary-h: 222; --tema-primary-s: 47%; --tema-primary-l: 11%;
+    --tema-primary-foreground-h: 0; --tema-primary-foreground-s: 0%; --tema-primary-foreground-l: 98%;
+    --tema-secondary-h: 210; --tema-secondary-s: 40%; --tema-secondary-l: 96.1%;
+    --tema-secondary-foreground-h: 222.2; --tema-secondary-foreground-s: 47.4%; --tema-secondary-foreground-l: 11.2%;
+    --tema-accent-h: 210; --tema-accent-s: 40%; --tema-accent-l: 48%;
+    --tema-accent-foreground-h: 0; --tema-accent-foreground-s: 0%; --tema-accent-foreground-l: 98%;
+    --tema-neutral-default-h: 215; --tema-neutral-default-s: 15%;
+    --tema-neutral-0-l: 100%; --tema-neutral-50-l: 98.0%; --tema-neutral-100-l: 96.1%; --tema-neutral-200-l: 93.0%;
+    --tema-neutral-300-l: 85.1%; --tema-neutral-400-l: 70.0%; --tema-neutral-500-l: 55.0%; --tema-neutral-600-l: 45.1%;
+    --tema-neutral-700-l: 35.0%; --tema-neutral-800-l: 20.0%; --tema-neutral-900-l: 10.0%; --tema-neutral-950-l: 5.0%;
+    --tema-success-h: 142.1; --tema-success-s: 70.6%; --tema-success-l: 45.3%;
+    --tema-success-foreground-h: 0; --tema-success-foreground-s: 0%; --tema-success-foreground-l: 98%;
+    --tema-warning-h: 44.8; --tema-warning-s: 99.1%; --tema-warning-l: 52.9%;
+    --tema-warning-foreground-h: 30; --tema-warning-foreground-s: 80%; --tema-warning-foreground-l: 15%;
+    --tema-destructive-h: 0; --tema-destructive-s: 84.2%; --tema-destructive-l: 60.2%;
+    --tema-destructive-foreground-h: 0; --tema-destructive-foreground-s: 0%; --tema-destructive-foreground-l: 98%;
+    --tema-info-h: 200; --tema-info-s: 90%; --tema-info-l: 50%;
+    --tema-info-foreground-h: 0; --tema-info-foreground-s: 0%; --tema-info-foreground-l: 98%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-family-base);
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+  }
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer components {
+  .sidebar-icon-button {
+    @apply w-10 h-10 flex items-center justify-center rounded-lg
+           transition-all duration-150 ease-out;
+  }
+  .sidebar-icon-button:hover {
+    @apply bg-primary/10 text-primary scale-105;
+  }
+  .sidebar-icon-button.active {
+    @apply bg-primary text-primary-foreground shadow-md scale-105;
+  }
+  .sidebar-icon-button:not(.active) {
+    @apply text-muted-foreground;
+  }
+  .sidebar-icon-button:not(.active):hover {
+     @apply bg-muted text-primary shadow;
+  }
+
+  .tooltip-arrow {
+    fill: hsl(var(--tema-neutral-default-h) var(--tema-neutral-default-s) var(--tema-neutral-0-l));
+  }
+
+  .logo {
+    @apply h-[6em] p-[1.5em] drop-shadow-[0_0_0_transparent] transition-[filter] duration-300;
+    will-change: filter;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em hsl(var(--tema-primary-h) var(--tema-primary-s) var(--tema-primary-l) / 0.7));
+  }
 }
